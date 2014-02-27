@@ -70,7 +70,7 @@
 				var thp = parseInt(t.css('padding-top')) + parseInt(t.css('padding-bottom'));
 				var thb = parseInt(t.css('border-top-width')) + parseInt(t.css('border-bottom-width'));
 				
-				if ($.browser.msie) {
+				if (navigator.userAgent.match(/msie/i)) {
 					t.html(tip).fadeIn(this.showSpeed).css({width: ''});
 					var tw  = t.width();
 					var twm = parseInt(t.css('max-width'));
@@ -109,16 +109,16 @@
 		 */
 		init: function() {
 			$('*[tip]')
-				.live('mouseover', function(e) {
+				.bind('mouseover', function(e) {
 					$.mel.tipper.show($(this).attr('tip'), e.pageX, e.pageY);
 				})
-				.live('mousemove', function(e) {
+				.bind('mousemove', function(e) {
 					$.mel.tipper.show($(this).attr('tip'), e.pageX, e.pageY, true);
 				})
-				.live('mouseout', function() {
+				.bind('mouseout', function() {
 					$.mel.tipper.hide();
 				})
-				.live('click', function() {
+				.bind('click', function() {
 					$.mel.tipper.hide();
 				})
 			;
