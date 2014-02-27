@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	
+	<head>
+		<title>MEL.Tipper</title>
+		<meta http-equiv="content-type" content="text/html; charset=windows-1251" />
+		<script type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript" src="jquery.mel.tipper.js"></script>
+		<script type="text/javascript">
+			
+			$(document).ready(function() {
+				
+				$('a').each(function() {
+					$(this).attr('tip', '<b>'+$(this).html()+'</b><br /><span style="color: #ff8000">'+$(this).attr('href')+'</span>');
+				});
+				
+				$('#newT').click(function() {
+					$(this).attr('tip', 'Новый Тултип!');
+				});
+				
+				$('#remT').click(function() {
+					$(this).attr('tip', '');
+					$.mel.tipper.hide();
+				});
+				
+				$('#newS').click(function() {
+					$.mel.tipper.style({
+						border:		'3px double #ffffff',
+						background:	'#333333',
+						color:		'#ffffff'
+					});
+				});
+				
+				$('#newP').click(function() {
+					$('<p style="background: #ffffcc; padding: 5px">Динамически добавленный параграф с тултипом</p>')
+						.attr('tip', 'Все прекрасно работает!')
+						.appendTo('#box')
+					;
+				});
+				
+			});
+			
+		</script>
+		<style type="text/css">
+			button {
+				cursor: pointer;
+				font-size: 11px;
+				font-weight: bold;
+				padding: 4px;
+				vertical-align: middle;
+				width: 160px;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<h1><a href="http://melnaron.net/projects/meltipper">MEL.Tipper</a></h1>
+		<hr />
+		<blockquote>
+			<h2>Примеры</h2>
+			<blockquote>
+				<p><button tip="Нажмите на кнопку чтобы изменить текст тултипа" id="newT">Простой Тултип</button></p>
+				<p><button tip="Нажмите на кнопку чтобы удалить тултип этой кнопки" id="remT">Удалить Тултип</button></p>
+				<p><button tip="<center><b>HTML Тултип</b></center><br /><div style='border: 1px dotted #999; color: #f80; padding: 5px'>Вы можете использовать тултипы с HTML кодом!</div>">HTML Тултип</button></p>
+				<p><button tip="Нажмите на кнопку чтобы изменить стиль тултипа" id="newS">Изменить Стиль</button></p>
+				<p><button tip="Нажмите на кнопку чтобы добавить новый параграф" id="newP">Добавить Параграф</button></p>
+				<div id="box"></div>
+			</blockquote>
+			<h2>Изменения</h2>
+			<blockquote>
+				1.3.0
+				<ul>
+					<li>Плагин полностью переписан под jQuery 1.3.1;</li>
+					<li>Теперь механизм показа тултипов использует live-эвенты, а это позволяет не вызывать
+						функцию tip() для создания тултипа при добавлении элемента на странице с помощью скрипта;</li>
+					<li>Добавлены настройки для показа тултипа с задержкой и мягким псплыванием;</li>
+				</ul>
+				
+				1.2.1
+				<ul>
+					<li>Тултип теперь двигается за курсором;</li>
+				</ul>
+				
+				1.2.0
+				<ul>
+					<li>Исправлено позиционирование тултипа справа и снизу около границы окна, когда тултип вылезал за границу и из-за этого появлялся скроллинг;</li>
+					<li>Добавлена возможность удаления тултипа у элемента путем вызова функции $(element).tip() без параметра;</li>
+					<li>Функция инициализации всех тултипов на странице была изменена с $.reTips() на $.initTips();</li>
+				</ul>
+			</blockquote>
+		</blockquote>
+		<hr />
+		<p>&copy; 2009 <a href="http://melnaron.net">Melnaron</a></p>
+	</body>
+	
+</html>
